@@ -1,4 +1,6 @@
+import 'package:fl_medec/providers/auth_provider.dart';
 import 'package:fl_medec/providers/page_provider.dart';
+import 'package:fl_medec/screens/auth_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -34,6 +36,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           curve: Curves.easeInOut,
         );
       }
+    } else {
+      Provider.of<AuthProvider>(context).setIsFirst();
+      Navigator.of(context).pushNamed(AuthScreen.routeName);
     }
   }
 

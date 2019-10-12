@@ -1,10 +1,12 @@
 import 'package:fl_medec/providers/auth_provider.dart';
 import 'package:fl_medec/providers/page_provider.dart';
 import 'package:fl_medec/screens/auth_screen.dart';
+import 'package:fl_medec/screens/home_screen.dart';
 import 'package:fl_medec/screens/splash_screen.dart';
 import 'package:fl_medec/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,13 +22,39 @@ class MyApp extends StatelessWidget {
           value: PageProvider(),
         ),
       ],
-      child: MaterialApp(
-        title: 'Medeco',
-        home: AuthScreen(),
-        routes: {
-          WelcomeScreen.routeName: (ctx) => WelcomeScreen(),
-          AuthScreen.routeName: (ctx) => AuthScreen(),
-        },
+      child: Consumer<AuthProvider>(
+        builder: (ctx, auth, _) => MaterialApp(
+          title: 'Medico',
+          home: FutureBuilder<SharedPreferences>(
+            future: SharedPreferences.getInstance(),
+            builder: (BuildContext context,
+                AsyncSnapshot<SharedPreferences> snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.none:
+                case ConnectionState.waiting:
+                  return SplashScreen();
+                default:
+                  return snapshot.data.getBool("isFirst") == null
+                      ? WelcomeScreen()
+                      : auth.isAuth
+                          ? HomeScreen()
+                          : FutureBuilder(
+                              future: auth.tryAutoLogin(),
+                              builder: (ctx, authResultSnapshot) =>
+                                  authResultSnapshot.connectionState ==
+                                          ConnectionState.waiting
+                                      ? SplashScreen()
+                                      : AuthScreen(),
+                            );
+              }
+            },
+          ),
+          routes: {
+            WelcomeScreen.routeName: (ctx) => WelcomeScreen(),
+            AuthScreen.routeName: (ctx) => AuthScreen(),
+            HomeScreen.routeName: (ctx) => HomeScreen(),
+          },
+        ),
       ),
     );
   }
