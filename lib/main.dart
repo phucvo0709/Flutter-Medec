@@ -1,6 +1,7 @@
 import 'package:fl_medec/providers/page_provider.dart';
-import 'package:fl_medec/screens/SplashScreen.dart';
-import 'package:fl_medec/screens/WelcomeScreen.dart';
+import 'package:fl_medec/screens/auth_screen.dart';
+import 'package:fl_medec/screens/splash_screen.dart';
+import 'package:fl_medec/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,9 +18,10 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'Medeco',
-        home: SplashScreen(),
+        home: AuthScreen(),
         routes: {
           WelcomeScreen.routeName: (ctx) => WelcomeScreen(),
+          AuthScreen.routeName: (ctx) => AuthScreen(),
         },
       ),
     );
