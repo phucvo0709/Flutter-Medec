@@ -18,8 +18,8 @@ class _AuthScreenState extends State<AuthScreen> {
         fit: StackFit.expand,
         children: <Widget>[
           Positioned(
-            left: -25.0,
-            top: -250.0,
+            left: -35.0,
+            top: -240.0,
             child: Container(
               child: Image.asset(
                 'assets/images/Ellipse 62.png',

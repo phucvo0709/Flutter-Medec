@@ -1,4 +1,6 @@
+import 'package:fl_medec/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 enum AuthMode { SignUp, Login }
 
@@ -19,9 +21,11 @@ class _FormAuthState extends State<FormAuth> {
   };
 
   bool _isLoading = false;
+  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
-  void _submit() {
+  void _submit() async {
     if (!_formKey.currentState.validate()) {
       return;
     }
@@ -31,8 +35,16 @@ class _FormAuthState extends State<FormAuth> {
     });
     if (_authMode == AuthMode.Login) {
       //lOGIN
+      await Provider.of<AuthProvider>(context, listen: false).signId(
+        _authData['email'],
+        _authData['password'],
+      );
     } else {
       //REGISTER
+      await Provider.of<AuthProvider>(context, listen: false).signUp(
+        _authData['email'],
+        _authData['password'],
+      );
     }
     setState(() {
       _isLoading = false;
@@ -88,6 +100,7 @@ class _FormAuthState extends State<FormAuth> {
                     ),
                   ),
                 ),
+                controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value.isEmpty || !value.contains('@')) {
@@ -176,7 +189,7 @@ class _FormAuthState extends State<FormAuth> {
                         ),
                       ),
                       obscureText: true,
-                      controller: _passwordController,
+                      controller: _confirmPasswordController,
                       validator: _authMode == AuthMode.SignUp
                           ? (value) {
                               if (value != _passwordController.text) {

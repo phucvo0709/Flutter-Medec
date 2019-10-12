@@ -1,3 +1,4 @@
+import 'package:fl_medec/providers/auth_provider.dart';
 import 'package:fl_medec/providers/page_provider.dart';
 import 'package:fl_medec/screens/auth_screen.dart';
 import 'package:fl_medec/screens/splash_screen.dart';
@@ -12,6 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider.value(
+          value: AuthProvider(),
+        ),
         ChangeNotifierProvider.value(
           value: PageProvider(),
         ),
