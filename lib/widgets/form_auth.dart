@@ -1,5 +1,6 @@
 import 'package:fl_medec/models/http_exception.dart';
 import 'package:fl_medec/providers/auth_provider.dart';
+import 'package:fl_medec/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -84,9 +85,12 @@ class _FormAuthState extends State<FormAuth> {
       var errorMessage = 'Could not authenticate you. Please try again';
       _showErrorDialog(errorMessage);
     }
+
     setState(() {
       _isLoading = false;
     });
+
+    Navigator.of(context).pushNamed(HomeScreen.routeName);
   }
 
   void _switchAuthMode() {

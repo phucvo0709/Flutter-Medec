@@ -25,6 +25,9 @@ class MyApp extends StatelessWidget {
       child: Consumer<AuthProvider>(
         builder: (ctx, auth, _) => MaterialApp(
           title: 'Medico',
+          theme: ThemeData(
+            primaryColor: Color.fromRGBO(110, 120, 247, 1),
+          ),
           home: FutureBuilder<SharedPreferences>(
             future: SharedPreferences.getInstance(),
             builder: (BuildContext context,

@@ -13,7 +13,7 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomPadding: false,
-      backgroundColor: Color(0xFFF4F6F9),
+      backgroundColor: Color(0xFFF5F5F5),
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
