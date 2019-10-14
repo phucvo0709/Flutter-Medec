@@ -1,5 +1,6 @@
 import 'package:fl_medec/providers/auth_provider.dart';
 import 'package:fl_medec/providers/page_provider.dart';
+import 'package:fl_medec/providers/slider_provider.dart';
 import 'package:fl_medec/screens/auth_screen.dart';
 import 'package:fl_medec/screens/home_screen.dart';
 import 'package:fl_medec/screens/splash_screen.dart';
@@ -21,6 +22,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider.value(
           value: PageProvider(),
         ),
+        ChangeNotifierProvider.value(
+          value: SliderProvider(),
+        )
       ],
       child: Consumer<AuthProvider>(
         builder: (ctx, auth, _) => MaterialApp(

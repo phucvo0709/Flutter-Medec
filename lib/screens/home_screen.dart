@@ -1,3 +1,4 @@
+import 'package:fl_medec/widgets/slider_home.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -204,15 +205,39 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           Container(
+            child: SliderHome(),
+          ),
+          Container(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(17.0, 280.0, 17.0, 48.0),
+              padding: EdgeInsets.fromLTRB(17.0, 448.0, 17.0, 48.0),
               child: Column(
                 children: <Widget>[
-                  Text('slider'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        'Doctors nearby you',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 0.66,
+                          color: Color.fromRGBO(63, 64, 121, 1),
+                          fontSize: 14,
+                        ),
+                      ),
+                      Text(
+                        'See all',
+                        style: TextStyle(
+                          fontSize: 14.0,
+                          letterSpacing: 0.66,
+                          color: Color.fromRGBO(58, 58, 252, 1),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
-          ),
+          )
         ],
       ),
     );
