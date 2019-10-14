@@ -20,6 +20,9 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Color(0xFFF5F5F5),
       body: Stack(
         children: <Widget>[
+          Column(
+            children: <Widget>[],
+          ),
           Container(
             height: 143.0,
             decoration: BoxDecoration(
@@ -198,6 +201,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ],
+            ),
+          ),
+          Container(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(17.0, 280.0, 17.0, 48.0),
+              child: Column(
+                children: <Widget>[
+                  Text('slider'),
+                ],
+              ),
             ),
           ),
         ],
